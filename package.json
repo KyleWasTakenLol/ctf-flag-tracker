@@ -1,6 +1,25 @@
-"scripts": {
+{
+  "name": "ctf-flag-tracker",
+  "version": "1.0.0",
+  "description": "A REST API for tracking CTF competition flags",
+  "main": "server.js",
+  "scripts": {
     "start": "node server.js",
     "setup": "node database/setup.js",
     "seed": "node database/seed.js",
     "test": "jest --testEnvironment=node --forceExit"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "dotenv": "^17.4.2",
+    "express": "^5.2.1",
+    "sequelize": "^6.37.8",
+    "sqlite3": "^6.0.1"
+  },
+  "devDependencies": {
+    "jest": "^30.3.0",
+    "supertest": "^7.2.2"
+  }
 }
