@@ -1,17 +1,26 @@
 // Initializes the database and defines all models and relationships
 const { Sequelize, DataTypes } = require('sequelize');
 require('dotenv').config();
-const BetterSqlite3 = require('better-sqlite3');
+const { Sequelize, DataTypes } = require('sequelize');
+require('dotenv').config();
 
-const db = new Sequelize({
-    dialect: 'sqlite',
-    dialectModule: BetterSqlite3,
-    storage: process.env.NODE_ENV === 'production'
-        ? '/tmp/ctf_tracker.db'
-        : `database/${process.env.DB_NAME || 'ctf_tracker.db'}`,
-    logging: console.log
-});
-
+const db = process.env.DATABASE_URL
+    ? new Sequelize(process.env.DATABASE_URL, {
+        dialect: 'postgres',
+        dialectOptions: {
+            ssl: {
+                require: true,
+                rejectUnauthorized: false
+            }
+        },
+        logging: false
+    })
+    : new Sequelize({
+        dialect: 'sqlite',
+        storage: `database/${process.env.DB_NAME || 'ctf_tracker.db'}`,
+        logging: console.log
+    });
+    
 // Users table — stores team member accounts
 const User = db.define('User', {
     id: {
