@@ -25,7 +25,8 @@ const User = db.define('User', {
         allowNull: false,
         unique: true
     },
-    password: {
+    // Stores bcrypt hash, never plain text
+    passwordHash: {
         type: DataTypes.STRING,
         allowNull: false
     },
@@ -54,10 +55,7 @@ const Challenge = db.define('Challenge', {
         type: DataTypes.STRING,
         allowNull: false,
         validate: {
-            isIn: [['OSINT', 'Cryptography', 'Password Cracking', 
-                'Log Analysis', 'Network Traffic Analysis', 'Forensics', 
-                'Scanning & Reconnaissance', 'Web Application Exploitation', 
-                'Enumeration & Exploitation']]
+            isIn: [['OSINT', 'Cryptography', 'Password Cracking', 'Log Analysis', 'Network Traffic Analysis', 'Forensics', 'Scanning & Reconnaissance', 'Web Application Exploitation', 'Enumeration & Exploitation']]
         }
     },
     pointValue: {
@@ -108,10 +106,8 @@ async function setupDatabase() {
     try {
         await db.authenticate();
         console.log('Connection to database established successfully.');
-
         await db.sync({ force: true });
         console.log('Database tables created successfully.');
-
         await db.close();
     } catch (error) {
         console.error('Unable to connect to the database:', error);
