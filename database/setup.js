@@ -1,10 +1,9 @@
 // Initializes the database and defines all models and relationships
-const { Sequelize, DataTypes } = require('sequelize');
-require('dotenv').config();
+const BetterSqlite3 = require('better-sqlite3');
 
 const db = new Sequelize({
     dialect: 'sqlite',
-    dialectModule: require('better-sqlite3'),
+    dialectModule: BetterSqlite3,
     storage: process.env.NODE_ENV === 'production'
         ? '/tmp/ctf_tracker.db'
         : `database/${process.env.DB_NAME || 'ctf_tracker.db'}`,
