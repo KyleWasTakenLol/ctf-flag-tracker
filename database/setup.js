@@ -1,8 +1,6 @@
 // Initializes the database and defines all models and relationships
 const { Sequelize, DataTypes } = require('sequelize');
 require('dotenv').config();
-const { Sequelize, DataTypes } = require('sequelize');
-require('dotenv').config();
 
 const db = process.env.DATABASE_URL
     ? new Sequelize(process.env.DATABASE_URL, {
@@ -20,7 +18,7 @@ const db = process.env.DATABASE_URL
         storage: `database/${process.env.DB_NAME || 'ctf_tracker.db'}`,
         logging: console.log
     });
-    
+
 // Users table — stores team member accounts
 const User = db.define('User', {
     id: {
