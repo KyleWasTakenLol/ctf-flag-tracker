@@ -1,4 +1,6 @@
 // Initializes the database and defines all models and relationships
+const { Sequelize, DataTypes } = require('sequelize');
+require('dotenv').config();
 const BetterSqlite3 = require('better-sqlite3');
 
 const db = new Sequelize({
