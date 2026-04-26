@@ -9,6 +9,9 @@
     "seed": "node database/seed.js",
     "test": "jest --testEnvironment=node --forceExit --runInBand"
   },
+  "engines": {
+    "node": "18.x"
+  },
   "keywords": [],
   "author": "",
   "license": "ISC",

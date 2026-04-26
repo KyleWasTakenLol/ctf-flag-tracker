@@ -5,11 +5,12 @@ require('dotenv').config();
 const db = new Sequelize({
     dialect: 'sqlite',
     dialectModule: require('better-sqlite3'),
-    storage: process.env.NODE_ENV === 'production' 
-        ? '/tmp/ctf_tracker.db' 
+    storage: process.env.NODE_ENV === 'production'
+        ? '/tmp/ctf_tracker.db'
         : `database/${process.env.DB_NAME || 'ctf_tracker.db'}`,
     logging: console.log
 });
+
 // Users table — stores team member accounts
 const User = db.define('User', {
     id: {
