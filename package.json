@@ -7,7 +7,7 @@
     "start": "node server.js",
     "setup": "node database/setup.js",
     "seed": "node database/seed.js",
-    "test": "jest --testEnvironment=node --forceExit"
+    "test": "jest --testEnvironment=node --forceExit --runInBand"
   },
   "keywords": [],
   "author": "",
