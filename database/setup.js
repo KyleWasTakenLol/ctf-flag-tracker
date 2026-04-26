@@ -4,6 +4,7 @@ require('dotenv').config();
 
 const db = new Sequelize({
     dialect: 'sqlite',
+    dialectModule: require('better-sqlite3'),
     storage: `database/${process.env.DB_NAME}` || 'database/ctf_tracker.db',
     logging: console.log
 });
